@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Contact Form</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/react@16.4.1/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16.4.1/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js" charset="utf-8"></script>
+
+    <script type="text/babel">
+      class ContactForm extends React.Component {
+        state = {
+          firstName: '',
+          age: '',
+          email: ''
+        }
+
+        handleFirstNameChange = event => {
+            this.setState({firstName: event.target.value})
+        }
+
+        handleAgeChange = event => {
+            this.setState({age: event.target.value})
+        }
+
+        handleEmailChange = event => {
+            this.setState({email: event.target.value})
+        }
+
+        render() {
+          return <div>
+            <form onSubmit={this.handleSubmit}>
+                <label>First Name: 
+                    <input type="text" name='firstName' value={this.state.firstName} onChange={event => this.handleFirstNameChange(event)} />
+                </label>
+                <label>Age:
+                    <input type="number" name='age' value={this.state.age} onChange={event => this.handleAgeChange(event)}/>
+                </label>
+            { this.state.age >= 14 && 
+                <label> Email:
+                    <input type="email" name="email" value={this.state.email} onChange={event => this.handleEmailChange(event)} />
+                </label>
+            }
+                <input type='submit' value='Submit' />
+            </form>
+          </div>
+        }
+      }
+
+      const rootElement = document.getElementById("root");
+      ReactDOM.render(<ContactForm />, rootElement);
+    </script>
+    <div id="root"></div>
+</body>
+
+</html>
